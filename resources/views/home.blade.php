@@ -4,6 +4,12 @@
 
 
 
+@section('register-alert')
+  @if (session()->has('success'))
+    <div class="alert alert-success">{{session('success')}}</div>
+  @endif
+@endsection
+
 @section('content')
     @foreach ($posts as $post)
     <div class="card" style="width: 18rem;" data-id="{{$post->id}}">
@@ -17,8 +23,4 @@
         </div>
       </div>
     @endforeach
-
-   
-
-
 @endsection

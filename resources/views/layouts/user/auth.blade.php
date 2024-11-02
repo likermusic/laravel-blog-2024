@@ -10,6 +10,10 @@
 <body>
 
   <main class="py-4">
+    <div class="container d-flex justify-content-center">
+      @yield('register-errors')
+      @yield('login-error')
+    </div>
     <div class="container d-flex align-items-center justify-content-center" style="height: 90vh">
       @yield('content')
     </div>

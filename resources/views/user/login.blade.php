@@ -1,6 +1,6 @@
 @extends('layouts.user.auth')
 
-@section('title', 'Register')
+@section('title', 'Login')
 
 
 
@@ -14,8 +14,14 @@
   @endif
 @endsection
 
+@section('login-error')
+    @if (session('errorLogin')) 
+      <div class="alert alert-danger">{{session('errorLogin')}}</div>
+    @endif
+@endsection
+
 @section('content')
-  <form class="col-6" method="POST" action="{{route('user.store')}}">
+  <form class="col-6" method="POST" action="{{route('user.checkLogin')}}">
     @csrf
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email</label>
@@ -25,11 +31,7 @@
       <label for="exampleInputPassword1" class="form-label">Password</label>
       <input value="{{old('password')}}" type="password" name="password" class="form-control" id="exampleInputPassword1">
     </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword2" class="form-label">Password confirmation</label>
-      <input type="password" value="{{old('password_confirmation')}}"  name="password_confirmation" class="form-control" id="exampleInputPassword2">
-    </div>
-
-    <button type="submit" class="btn btn-primary">Register</button>
+    
+    <button type="submit" class="btn btn-primary">Login</button>
   </form>
 @endsection

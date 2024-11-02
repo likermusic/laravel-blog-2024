@@ -29,11 +29,17 @@
       </ul>
 
       @auth
-          {{auth()->user()->email}}
+      <span class="text-white me-4">{{auth()->user()->email}}</span>
+      <a href="{{route('user.logout')}}" class="btn btn-secondary">Выйти</a>
+      @else
+      <a href="{{route('user.register')}}" class="btn btn-success me-2">Регистрация</a>
+      <a href="{{route('user.login')}}" class="btn btn-primary">Авторизация</a>
       @endauth
 
-      <a href="{{route('user.register')}}" class="btn btn-success me-2">Регистрация</a>
-      <a href="" class="btn btn-primary">Авторизация</a>
+{{-- 
+      @if (auth()->check())
+          
+      @endif       --}}
     </div>
   </div>
   </nav>
