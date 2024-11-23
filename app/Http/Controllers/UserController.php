@@ -66,7 +66,12 @@ class UserController extends Controller
 
         // if (Auth::attempt(['email' => $request->email, 'password' => $request->password]))
         if (Auth::attempt($cred)) {
-            return redirect()->route('home');
+            if (auth()->user()->role === 1) {
+                //admin@ mail.ru  12345
+                return redirect()->to('admin');
+            } else {
+                return redirect()->route('home');
+            }
         }
         
         return back()->with('errorLogin', 'Неверный логин или пароль');

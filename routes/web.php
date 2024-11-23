@@ -20,6 +20,7 @@ Route::get('/', 'HomeController@index')->name('home');
 // Route::post('/', 'HomeController@store')->name('post.store')->middleware('auth');
 Route::post('/', 'HomeController@store')->name('post.store');
 Route::delete('/', 'HomeController@delete')->name('post.delete');
+Route::resource('admin', 'AdminController')->middleware('admin');
 
 
 Route::middleware('guest')->group(function() {
