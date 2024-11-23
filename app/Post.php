@@ -38,6 +38,13 @@ class Post extends Model
        
         return $posts;
     }
+
+    public function users() {
+        return $this->belongsToMany(User::class, 'post_user');
+        // return $this->belongsToMany(User::class, 'post_user');
+
+        
+    }
 }
 
 

@@ -11,10 +11,10 @@ class UserController extends Controller
 {
 
     private $messages = [
-      'email.required' => 'Поле не должно быть пустым',
-      'email.email' => 'Значение должно быть почтой',
+      'email.required' => 'Поле email не должно быть пустым',
+      'email.email' => 'Значение email должно быть почтой',
       'email.unique' => 'Такой пользователь уже существует',
-      'password.required' => 'Поле не должно быть пустым',  
+      'password.required' => 'Поле password не должно быть пустым',  
       'password.confirmed' => 'Пароли не совпадают',
       'password.min' => 'Мало символов в пароле',
       'password.max' => 'Превышено количество символов в пароле',
@@ -25,6 +25,10 @@ class UserController extends Controller
 
     public function store(Request $request) {
         // dump($request->all());
+
+        // $request->only('name')->validate([
+
+        // ]);
 
         // $request->validate([
         //     'email' => 'required|email|unique:users',
@@ -65,7 +69,7 @@ class UserController extends Controller
             return redirect()->route('home');
         }
         
-        return back()->with('errorLogin', 'Некорректный логин или пароль');
+        return back()->with('errorLogin', 'Неверный логин или пароль');
     }
 
     public function logout() {

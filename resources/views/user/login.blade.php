@@ -3,8 +3,7 @@
 @section('title', 'Login')
 
 
-
-@section('register-errors')
+@section('login-validate-errors')
 @if ($errors->any())
     <ul class="bg-danger col-6 p-4">
       @foreach ($errors->all() as $error)
@@ -14,9 +13,15 @@
   @endif
 @endsection
 
-@section('login-error')
+@section('login-fail-error')
     @if (session('errorLogin')) 
       <div class="alert alert-danger">{{session('errorLogin')}}</div>
+    @endif
+@endsection
+
+@section('error')
+    @if (session('error')) 
+      <div class="alert alert-danger">{{session('error')}}</div>
     @endif
 @endsection
 
