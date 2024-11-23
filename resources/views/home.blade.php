@@ -30,9 +30,8 @@
             @csrf
             <input type="hidden" name="postId" value="{{$post->id}}">
             {{--contains - проверяет в коллекции полученной через Eloquent есть ли в массиве favourites пост с таким id  --}}
-            @if ($favourites->contains($post->id))
-              @method('DELETE')
-            <button class="d-inline-block btn btn-success remove-favourites" type="submit">Удалить из избранного</button>    
+            @if (count($favourites) !== 0 and $favourites->contains($post->id))
+            <button class="d-inline-block btn btn-danger remove-favourites" type="submit">Удалить из избранного</button>    
             @else
               <button class="d-inline-block btn btn-warning add-favourites" type="submit">В избранное</button>
             @endif

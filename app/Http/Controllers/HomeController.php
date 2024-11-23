@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index() {
-        $posts = Post::get_posts();
-        $favourites = User::find(auth()->id())->posts;   
+        $posts = Post::get_posts();    
+        $favourites = (auth()->id()) ? User::find(auth()->id())->posts : [];   
         return view('home', compact('posts', 'favourites'));
     }
 
@@ -49,13 +49,16 @@ class HomeController extends Controller
 
 
         //для удаления поста из избранного
-        //$post->users()->detach(auth()->id());
     }
-
+    
     public function delete(Request $request) {
         if (!auth()->check()) {
             return redirect()->route('user.login')->with('error', 'Пожалуйста, войдите в систему, чтобы удалить пост из избранного');
+        } else {
+            $id = $request->id;
+            $post = Post::find($id);
+            $result = $post->users()->detach(auth()->id()); 
+            echo $result ; 
         }
-        dd($request);
     }
 }
